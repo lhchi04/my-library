@@ -8,25 +8,6 @@
   <title>My Library</title>
 </head>
 <body>
-  <!-- <table>
-    <caption>Book shelf</caption>
-    <thead>
-      <th></th>
-      <th>Title</th>
-      <th>Author</th>
-      <th>Pages</th>
-      <th>finished</th>
-    </thead>
-    <tbody>
-      <tr>
-        <th>Book 1</th>
-        <td class="title"></td>
-        <td class="author"></td>
-        <td class="pages"></td>
-        <td class="finished"></td>
-      </tr>
-    </tbody>
-  </table> -->
   <div id="flex-container">
     <div class="header">
       <div class="logo">My Library</div>
@@ -40,26 +21,7 @@
       </div>
     </div>
 
-    <!-- <div class="sidebar">
-      <div class="photo">
-        <p>placeholder for image</p>    
-      </div>
-      <div class="side-content">Box 1
-      </div>
-      <div class="side-content">Box 2
-      </div>
-      <div class="side-content">Box 3
-      </div>
-    </div> -->
-
-    <!-- <div class="nav">
-      <ul>
-        <li>Latest Articles</li>
-        <li>Most Views</li>
-        <li>Featured</li>
-      </ul>
-    </div> -->
-
+    <div class="empty">Your library is currently empty<br>Add a book!</div>
     <div class="books"></div>
 
   </div>
@@ -81,13 +43,23 @@
       <div class="checkbox">
         <label class="form-control" for="finished"><input type="checkbox" id="finished" name="finished" value="yes" />Have you finished the book?</label>
       </div>
+      <div class="rating">
+        <label for="rating">Overall rating<span aria-label="required">*</span></label><br>
+        <span class="star-rating">
+          <input type="radio" name="rating" value="1"><i></i>
+          <input type="radio" name="rating" value="2"><i></i>
+          <input type="radio" name="rating" value="3"><i></i>
+          <input type="radio" name="rating" value="4"><i></i>
+          <input type="radio" name="rating" value="5"><i></i>
+        </span>
+      </div>
       <div>
         <label for="thoughts">Some thoughts? (optional)</label>
         <textarea id="thoughts" name="thoughts" rows="4" cols="100%" placeholder="Damn this book is so d-suckin' good..."></textarea>
       </div>
       <div class="button">
         <button id="close" type="button" onclick="closeForm()">Close</button>
-        <button id="submit" type="submit" >Done</button>
+        <button id="submit" type="submit" onclick="starValue()">Done</button>
       </div>
     </form>
   </div>
