@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="game.js" defer></script>
+  <title>My Library</title>
+</head>
+<body>
+  <!-- <table>
+    <caption>Book shelf</caption>
+    <thead>
+      <th></th>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Pages</th>
+      <th>finished</th>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Book 1</th>
+        <td class="title"></td>
+        <td class="author"></td>
+        <td class="pages"></td>
+        <td class="finished"></td>
+      </tr>
+    </tbody>
+  </table> -->
+  <div id="flex-container">
+    <div class="header">
+      <div class="logo">My Library</div>
+      <div class="menu">
+        <ul>
+          <li>header link one</li>
+          <li>header link two</li>
+          <li>header link three</li>
+          <li>header link four</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- <div class="sidebar">
+      <div class="photo">
+        <p>placeholder for image</p>    
+      </div>
+      <div class="side-content">Box 1
+      </div>
+      <div class="side-content">Box 2
+      </div>
+      <div class="side-content">Box 3
+      </div>
+    </div> -->
+
+    <!-- <div class="nav">
+      <ul>
+        <li>Latest Articles</li>
+        <li>Most Views</li>
+        <li>Featured</li>
+      </ul>
+    </div> -->
+
+    <div class="books"></div>
+
+  </div>
+  <button id="open" onclick="openForm()">Add New Book</button>
+  <div class="form-container">
+    <form>
+      <div>
+        <label for="title">Title<span aria-label="required">*</span></label>
+        <input id="title" type="text" name="title" placeholder="Blind Switch..." required />
+      </div>
+      <div>
+        <label for="author">Author<span aria-label="required">*</span></label>
+        <input id="author" type="text" name="author" placeholder="Charmander..." required />
+      </div>
+      <div>
+        <label for="pages">Pages<span aria-label="required">*</span></label>
+        <input id="pages" type="number" min="1" name="pages" placeholder="269..." required />
+      </div>
+      <div class="checkbox">
+        <label class="form-control" for="finished"><input type="checkbox" id="finished" name="finished" value="yes" />Have you finished the book?</label>
+      </div>
+      <div>
+        <label for="thoughts">Some thoughts? (optional)</label>
+        <textarea id="thoughts" name="thoughts" rows="4" cols="100%" placeholder="Damn this book is so d-suckin' good..."></textarea>
+      </div>
+      <div class="button">
+        <button id="close" type="button" onclick="closeForm()">Close</button>
+        <button id="submit" type="submit" >Done</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
