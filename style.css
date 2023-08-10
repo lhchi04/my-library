@@ -78,11 +78,15 @@ body {
   transition: all 0.3s ease-in-out;
 }
 /* Text content on preview */
-.content {
-  position: relative;
+.content, .setting {
+  position: absolute;
   height: 150px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 50%;  
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 85%;
+  /* top: 50%;
+  transform: translateY(-50%); */
 }
 .content h2 {
   color: white;
@@ -97,7 +101,7 @@ body {
   color: #bea4e0;
   font-size: 25px;
 }
-.content .rating-display {
+.content .rating-display, .rating-setting {
   position: absolute;
   display: grid;
   grid-template-rows: repeat(5, 1fr);
@@ -106,7 +110,7 @@ body {
   bottom: 0;
   height: 100%;
 }
-.rating-display .star-display {
+.rating-display .star-display, .rating-setting div {
   left: 0;
   top: 0;
   height: 100%;
@@ -116,21 +120,35 @@ body {
   background-size: contain;
   background-repeat: no-repeat;
 }
+/* Style star-rating setting */
+.rating-setting div, .rating-setting div:hover ~ div {
+  background: url('star1-hover.svg');
+  background-repeat: no-repeat;
+}
+/* Style star-rating setting when hovered */
+.rating-setting:hover div {
+  background: url('star-hover.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.star-hide {
+  display: none;
+}
 
 /* Setting buttons when hovered */
 .setting {
   display: none;
-  position: absolute;
-  top: 50%;  
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: clamp(200px, 70%, 400px);
 }
 .button-container {
+  position: absolute;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
+  width: clamp(150px, 100%, 400px);
+  top: 50%;  
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .delete, .view {
   margin: auto;
@@ -142,7 +160,7 @@ body {
   background-color: #ad1c2b;
 }
 .view {
-  background-color: #F5E1FD;
+  background-color: rgb(245, 225, 253);
   color: #4b276c;
 }
 /* Style toggle button */

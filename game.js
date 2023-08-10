@@ -42,6 +42,7 @@ let author = document.getElementById('author');
 let pages = document.getElementById('pages');
 let finished = document.getElementById('finished');
 let allRating = Array.from(document.querySelectorAll('input[type=radio]'));
+
 const form = document.querySelector('form');
 
 form.addEventListener('submit', (e) => {
@@ -76,6 +77,11 @@ form.addEventListener('submit', (e) => {
   titleContent.textContent = printPreview(myNewBook, 0);
   authorContent.textContent = printPreview(myNewBook, 1);
   finishedContent.textContent = printPreview(myNewBook, 2);
+  // Create star display
+  for (let i=0; i<5; i++) {
+    let star = document.createElement('div');
+    ratingContent.appendChild(star);
+  }
   displayStar(ratingContent, printPreview(myNewBook, 3));
 
   // Add setting section
@@ -86,6 +92,12 @@ form.addEventListener('submit', (e) => {
   const buttonContainer = document.createElement('div');
   buttonContainer.classList.add('button-container');
   setting.appendChild(buttonContainer);
+
+  // Add star-rating setting
+ const starSetting = document.createElement('div');
+ starSetting.classList.add('rating-setting');
+ settingStar(starSetting);
+ setting.appendChild(starSetting);
 
   // Add view button
   const view = document.createElement('button');
@@ -123,21 +135,29 @@ form.addEventListener('submit', (e) => {
   }
   toggleContainer.appendChild(toggleText);
   buttonContainer.appendChild(toggleContainer);
+
   bookPreview.appendChild(content);
   bookPreview.appendChild(setting);
 
   // Hover over preview to show setting
   bookPreview.addEventListener('mouseover', () => {
     bookPreview.lastChild.style.display = "block";
+    const allStar = bookPreview.querySelectorAll('.star-display');
+    Array.from(allStar).forEach(star => {
+      star.classList.add('star-hide'); 
+    });
   });
   bookPreview.addEventListener('mouseout', () => {
     bookPreview.lastChild.style.display = "none";
+    const allStar = bookPreview.querySelectorAll('.star-display');
+    Array.from(allStar).forEach(star => star.classList.remove('star-hide'));
   });
   document.querySelector('.books').appendChild(bookPreview);
 
   // Toggle the read button
-  const index = myLibrary.indexOf(newBook);
+  let index;
   toggle.addEventListener('click', () => {
+    index = myLibrary.indexOf(newBook);
     read = !read;
     if (read) {
       myLibrary[index].finished = true;
@@ -151,9 +171,20 @@ form.addEventListener('submit', (e) => {
       finishedContent.textContent = 'Not finished';
     }
   });
+
+  // Re-rating
+  const allStarSetting = starSetting.querySelectorAll('div');
+  Array.from(allStarSetting).forEach(star => {
+    star.addEventListener('click', () => {
+      index = myLibrary.indexOf(newBook);
+      let starIndex = Array.from(allStarSetting).indexOf(star);
+      myLibrary[index].rating = starIndex + 1;
+      displayStar(ratingContent, myLibrary[index].rating);
+    })
+  })
   
   // Delete the book preview
-  del.addEventListener('click', () => deleteBook(del,index));
+  del.addEventListener('click', () => deleteBook(del,myLibrary.indexOf(newBook)));
   showEmpty();
   resetForm();
 })
@@ -174,11 +205,14 @@ function starValue() {
 }
 
 function displayStar(ratingContent, num) {
+  // Remove stars first if user change rating
   for (let i=0; i<5; i++) {
-    let star = document.createElement('div');
-    ratingContent.appendChild(star);
+    let child = ratingContent.children[i];
+    child.classList.remove('star-display');
   }
+  // No rating
   if (num === -1) {}
+  // Add stars
   else {
     for (let i=0; i<num; i++) {
       let child = ratingContent.children[i];
@@ -186,6 +220,14 @@ function displayStar(ratingContent, num) {
     }
   }
   return ratingContent;
+}
+
+function settingStar(starRating) {
+  for (let i=0; i<5; i++) {
+    let star = document.createElement('div');
+    starRating.appendChild(star);
+  }
+  return starRating;
 }
 
 function deleteBook(e, index) {
@@ -216,7 +258,10 @@ function resetForm() {
   author.value = '';
   pages.value = '';
   finished.checked = false;
-  if (value !== -1)
+  if (value !== -1) {
     document.querySelector('input[name="rating"]:checked').checked = false;
+    value = -1;
+  }
+
 }
 
