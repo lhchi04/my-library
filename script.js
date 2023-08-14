@@ -1,25 +1,27 @@
 let myLibrary = []
 
-function Book(title, author, pages, finished, rating) {
-  this.title = title
-  this.author = author
-  this.pages = pages
-  this.finished = finished
-  this.rating = rating
-  this.titleInfo = function() {
-    return title;
+class Book {
+  constructor(title, author, pages, finished, rating) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.finished = finished;
+    this.rating = rating;
   }
-  this.authorInfo = function() {
-    return author;
+  titleInfo() {
+    return this.title;
   }
-  this.finishedInfo = function() {
-    if (finished === false)
+  authorInfo() {
+    return this.author;
+  }
+  finishedInfo() {
+    if (this.finished === false)
       return 'Not finished'
     return 'Read'
   }
-  this.ratingInfo = function() {
-    if (rating === -1) return -1
-    return parseInt(rating)
+  ratingInfo() {
+    if (this.rating === -1) return -1
+    return parseInt(this.rating)
   }
 }
 

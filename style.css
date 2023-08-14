@@ -228,6 +228,20 @@ body {
   color: #4b276c;
 }
 
+/* Styles for view */
+.view-container {
+  display: block;
+  /* opacity: 0; */
+  /* top: -400px; */
+  top: 50%;
+  transition: opacity 0.3s ease-out;
+  box-sizing: border-box;
+  position: fixed;
+  width: 600px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 /* Styles for form */
 .form-container {
   display: block;
